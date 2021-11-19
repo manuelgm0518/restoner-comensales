@@ -31,6 +31,24 @@ dependencies:
     sdk: flutter
 
 
+  get: ^4.3.8
+  get_storage: ^2.0.3
+  intl: ^0.17.0
+  share: ^2.0.4
+  logger: ^1.1.0
+  avoid_keyboard: ^0.3.0
+  easy_mask: ^2.0.1
+
+  unicons: ^2.0.2
+  derived_colors: ^0.3.0
+  flutter_svg: ^0.23.0+1
+  auto_animated: ^3.0.1
+  animated_size_and_fade: ^3.0.0
+  sliver_tools: ^0.2.5
+  collapsible: ^1.0.0
+  animated_clipper: ^0.2.0+2
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -56,6 +74,35 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/app/
+    - assets/restoner/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-BoldItalic.ttf
+          weight: 700
+          style: italic
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-BoldItalic.ttf
+          weight: 700
+          style: italic
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
