@@ -6,13 +6,12 @@ import 'package:restoner_comensales/providers/session_provider.dart';
 import 'config/app_pages.dart';
 import 'config/app_themes.dart';
 import 'services/session_service.dart';
-import 'utils/ui_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //setScreenColors(statusBar: kPrimaryColor, navigationBar: kPrimaryColor);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await initServices();
-  //setScreenColors(statusBar: kPrimaryColor.variants.light, navigationBar: kSecondaryColor);
   runApp(const RestonerComensales());
 }
 

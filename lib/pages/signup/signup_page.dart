@@ -43,7 +43,7 @@ class _FirstStepView extends GetView<SignUpController> {
         TextFormField(
           decoration: const InputDecoration(
             prefixIcon: Icon(UniconsLine.phone),
-            hintText: 'Número telfónico',
+            hintText: 'Número telefónico',
           ),
         ),
         kSpacerY,
