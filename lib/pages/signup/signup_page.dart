@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:restoner_comensales/components/custom_stepper.dart';
 import 'package:restoner_comensales/config/app_themes.dart';
 import 'package:restoner_comensales/utils/ui_utils.dart';
-import 'package:unicons/unicons.dart';
 import 'signup_controller.dart';
 export 'signup_controller.dart';
 
@@ -15,7 +15,7 @@ class SignUpPage extends GetView<SignUpController> {
     return Scaffold(
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.max, children: [
         const Icon(
-          UniconsLine.angle_left_b,
+          FontAwesomeIcons.chevronLeft,
           size: 30,
         ).mouse(() => Get.back()).aligned(Alignment.centerLeft),
         Text('Registro', style: Get.textTheme.title),
@@ -42,7 +42,7 @@ class _FirstStepView extends GetView<SignUpController> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
         TextFormField(
           decoration: const InputDecoration(
-            prefixIcon: Icon(UniconsLine.phone),
+            prefixIcon: Icon(FontAwesomeIcons.phone),
             hintText: 'Número telefónico',
           ),
         ),
@@ -92,14 +92,14 @@ class _ThirdStepView extends GetView<SignUpController> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
           TextFormField(
             decoration: const InputDecoration(
-              prefixIcon: Icon(UniconsLine.user),
+              prefixIcon: Icon(FontAwesomeIcons.user),
               hintText: 'Nombre(s)',
             ),
           ),
           kSpacerY,
           TextFormField(
             decoration: const InputDecoration(
-              prefixIcon: Icon(UniconsLine.tag_alt),
+              prefixIcon: Icon(FontAwesomeIcons.userTag),
               hintText: 'Apellido(s)',
             ),
           ),
@@ -114,9 +114,9 @@ class _ThirdStepView extends GetView<SignUpController> {
               obscureText: value!,
               decoration: InputDecoration(
                 hintText: 'Contraseña',
-                prefixIcon: const Icon(UniconsLine.lock),
+                prefixIcon: const Icon(FontAwesomeIcons.lock),
                 suffixIcon: IconButton(
-                  icon: Icon(value ? UniconsLine.eye : UniconsLine.eye_slash),
+                  icon: Icon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
                   onPressed: () => update(!value),
                 ),
               ),
@@ -129,9 +129,9 @@ class _ThirdStepView extends GetView<SignUpController> {
               obscureText: value!,
               decoration: InputDecoration(
                 hintText: 'Confirmar contraseña',
-                prefixIcon: const Icon(UniconsLine.lock),
+                prefixIcon: const Icon(FontAwesomeIcons.lock),
                 suffixIcon: IconButton(
-                  icon: Icon(value ? UniconsLine.eye : UniconsLine.eye_slash),
+                  icon: Icon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
                   onPressed: () => update(!value),
                 ),
               ),

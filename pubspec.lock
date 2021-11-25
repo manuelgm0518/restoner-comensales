@@ -186,6 +186,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "9.2.0"
   get:
     dependency: "direct main"
     description:
@@ -347,6 +354,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  pull_to_refresh:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  scroll_snap_list:
+    dependency: "direct main"
+    description:
+      name: scroll_snap_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.4"
   share:
     dependency: "direct main"
     description:
@@ -415,13 +436,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
-  unicons:
-    dependency: "direct main"
-    description:
-      name: unicons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   universal_io:
     dependency: transitive
     description:

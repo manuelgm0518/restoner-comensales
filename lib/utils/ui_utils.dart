@@ -97,6 +97,7 @@ extension WidgetUtils on Widget {
   Widget aspectRatio(double aspectRatio) => AspectRatio(aspectRatio: aspectRatio, child: this);
   Widget width(double width) => SizedBox(width: width, child: this);
   Widget height(double height) => SizedBox(height: height, child: this);
+  Widget box(double width, double height) => SizedBox(width: width, height: height, child: this);
   Widget scrollable({Axis direction = Axis.vertical, ScrollPhysics physics = kBouncyScroll, EdgeInsets? padding}) =>
       SingleChildScrollView(physics: physics, scrollDirection: direction, padding: padding, child: this);
   Widget safeArea() => SafeArea(child: this);
@@ -185,22 +186,26 @@ extension WidgetUtils on Widget {
     );
   }
 
-  Widget left(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
+  Widget left(List<Widget> items,
+      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
     if (items.isEmpty) return this;
     return Row(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [...items, this]);
   }
 
-  Widget right(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
+  Widget right(List<Widget> items,
+      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
     if (items.isEmpty) return this;
     return Row(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [this, ...items]);
   }
 
-  Widget top(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
+  Widget top(List<Widget> items,
+      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
     if (items.isEmpty) return this;
     return Column(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [...items, this]);
   }
 
-  Widget bottom(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
+  Widget bottom(List<Widget> items,
+      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
     if (items.isEmpty) return this;
     return Column(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [this, ...items]);
   }

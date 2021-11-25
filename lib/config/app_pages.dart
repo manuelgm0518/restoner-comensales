@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names
 import 'package:get/get.dart';
 import 'package:restoner_comensales/pages/home/home_page.dart';
+import 'package:restoner_comensales/pages/home/profile/profile_view.dart';
+import 'package:restoner_comensales/pages/home/search/search_view.dart';
 import 'package:restoner_comensales/pages/login/login_page.dart';
 import 'package:restoner_comensales/pages/signup/signup_page.dart';
 
@@ -25,6 +27,8 @@ class AppPages {
       page: () => const HomePage(),
       binding: BindingsBuilder<dynamic>(() {
         Get.put<HomeController>(HomeController());
+        Get.put<SearchController>(SearchController());
+        Get.put<ProfileController>(ProfileController());
       }),
     ),
   ];

@@ -1,11 +1,10 @@
-import 'package:avoid_keyboard/avoid_keyboard.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:restoner_comensales/components/restoner_logo.dart';
 import 'package:restoner_comensales/config/app_pages.dart';
 import 'package:restoner_comensales/config/app_themes.dart';
 import 'package:restoner_comensales/utils/ui_utils.dart';
-import 'package:unicons/unicons.dart';
 import 'login_controller.dart';
 export 'login_controller.dart';
 
@@ -27,7 +26,7 @@ class LogInPage extends GetView<LogInController> {
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                   hintText: 'Número telefónico',
-                  prefixIcon: Icon(UniconsLine.globe),
+                  prefixIcon: Icon(FontAwesomeIcons.globe),
                 ),
               ),
               kSpacerY,
@@ -38,9 +37,9 @@ class LogInPage extends GetView<LogInController> {
                   obscureText: value!,
                   decoration: InputDecoration(
                     hintText: 'Contraseña',
-                    prefixIcon: const Icon(UniconsLine.lock),
+                    prefixIcon: const Icon(FontAwesomeIcons.lock),
                     suffixIcon: IconButton(
-                      icon: Icon(value ? UniconsLine.eye : UniconsLine.eye_slash),
+                      icon: Icon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
                       onPressed: () => update(!value),
                     ),
                   ),

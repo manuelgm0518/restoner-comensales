@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:derived_colors/derived_colors.dart';
+import 'package:get/get.dart';
 import 'package:restoner_comensales/utils/ui_utils.dart';
 export 'package:derived_colors/derived_colors.dart';
 
@@ -46,9 +47,13 @@ class AppThemes {
       ),
     ),
 
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
+      titleTextStyle: Get.textTheme.title.copyWith(color: kPrimaryColor),
+      actionsIconTheme: const IconThemeData(color: kSecondaryColor),
+      color: kSurfaceColor,
       elevation: 0,
     ),
+
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
       fillColor: kSurfaceColor,

@@ -32,6 +32,7 @@ class RestonerComensales extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppThemes.main,
         getPages: AppPages.routes,
+        //showPerformanceOverlay: true,
         initialRoute: SessionService.to.loggedIn ? Routes.HOME : Routes.LOG_IN,
       ),
     );
