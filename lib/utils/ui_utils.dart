@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -186,28 +187,38 @@ extension WidgetUtils on Widget {
     );
   }
 
-  Widget left(List<Widget> items,
-      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
+  Widget left(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
     if (items.isEmpty) return this;
     return Row(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [...items, this]);
   }
 
-  Widget right(List<Widget> items,
-      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
+  Widget right(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center}) {
     if (items.isEmpty) return this;
     return Row(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [this, ...items]);
   }
 
-  Widget top(List<Widget> items,
-      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
+  Widget top(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
     if (items.isEmpty) return this;
     return Column(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [...items, this]);
   }
 
-  Widget bottom(List<Widget> items,
-      {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
+  Widget bottom(List<Widget> items, {MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start, CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start}) {
     if (items.isEmpty) return this;
     return Column(mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, mainAxisSize: MainAxisSize.min, children: [this, ...items]);
+  }
+
+  AnnotatedRegion<SystemUiOverlayStyle> overlayStyle({Color? statusBar, Color? navigationBar}) {
+    final statusBrightness = statusBar != null ? ThemeData.estimateBrightnessForColor(statusBar) : null;
+    final navigationBrightness = navigationBar != null ? ThemeData.estimateBrightnessForColor(navigationBar) : null;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: navigationBar,
+        statusBarColor: statusBar,
+        statusBarIconBrightness: statusBrightness?.opposite,
+        systemNavigationBarIconBrightness: navigationBrightness?.opposite,
+      ),
+      child: this,
+    );
   }
 }
 
@@ -273,18 +284,6 @@ class BounceState extends State<Bounce> {
 
 SizedBox get statusBarSpacer => SizedBox(height: MediaQuery.of(Get.context!).padding.top);
 double keyboardPadding(BuildContext context, [double extra = 0.0]) => max(0, MediaQuery.of(context).viewInsets.bottom - extra);
-void setScreenColors({Color? statusBar, Color? navigationBar}) {
-  final statusBrightness = statusBar != null ? ThemeData.estimateBrightnessForColor(statusBar) : null;
-  final navigationBrightness = navigationBar != null ? ThemeData.estimateBrightnessForColor(navigationBar) : null;
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      systemNavigationBarColor: navigationBar,
-      statusBarColor: statusBar,
-      statusBarIconBrightness: statusBrightness?.opposite,
-      systemNavigationBarIconBrightness: navigationBrightness?.opposite,
-    ),
-  );
-}
 
 extension BrightnessExtension on Brightness {
   Brightness get opposite => this == Brightness.dark ? Brightness.light : Brightness.dark;
@@ -294,5 +293,33 @@ extension ColorExtension on Color {
   Color get onColor {
     final brightness = ThemeData.estimateBrightnessForColor(this);
     return brightness == Brightness.dark ? Colors.white : Colors.black;
+  }
+}
+
+extension StateExt<T> on StateMixin<T> {
+  Widget stateBuilder({
+    required NotifierBuilder<T?> widget,
+    Widget Function(String? error)? onError,
+    Widget? onLoading,
+    Widget? onEmpty,
+    bool animatedSwitch = false,
+  }) {
+    return SimpleBuilder(builder: (_) {
+      return ConditionalWrapper(
+        condition: animatedSwitch,
+        conditionalBuilder: (child) => AnimatedSizeAndFade(child: child),
+        child: () {
+          if (status.isLoading) {
+            return onLoading ?? const Center(child: CircularProgressIndicator());
+          } else if (status.isError) {
+            return onError != null ? onError(status.errorMessage) : Center(child: Text('A error occurred: ${status.errorMessage}'));
+          } else if (status.isEmpty) {
+            return onEmpty ?? const SizedBox.shrink(); // Also can be widget(null); but is risky
+          }
+          // ignore: invalid_use_of_protected_member
+          return widget(value);
+        }(),
+      );
+    });
   }
 }

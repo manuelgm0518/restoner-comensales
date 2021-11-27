@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:restoner_comensales/config/app_pages.dart';
-import 'package:restoner_comensales/config/app_themes.dart';
 import 'package:restoner_comensales/services/session_service.dart';
-import 'package:restoner_comensales/utils/ui_utils.dart';
 
 class LogInController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -22,11 +20,5 @@ class LogInController extends GetxController {
       )) Get.offAllNamed(Routes.HOME);
       loggingIn(false);
     }
-  }
-
-  @override
-  void onInit() {
-    setScreenColors(statusBar: kBackgroundColor, navigationBar: kBackgroundColor);
-    super.onInit();
   }
 }

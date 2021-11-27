@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:restoner_comensales/config/app_themes.dart';
 import 'package:restoner_comensales/pages/home/search/search_controller.dart';
-import 'package:restoner_comensales/utils/ui_utils.dart';
 
 class HomeController extends GetxController with SingleGetTickerProviderMixin {
   late final TabController tabController;
@@ -16,7 +14,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
         Get.find<SearchController>().pageController.jumpToPage(1);
       }
     });
-    setScreenColors(statusBar: kSurfaceColor, navigationBar: kSurfaceColor);
+
     super.onInit();
   }
 }

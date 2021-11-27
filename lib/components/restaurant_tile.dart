@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:restoner_comensales/config/app_pages.dart';
 import 'package:restoner_comensales/config/app_themes.dart';
 import 'package:restoner_comensales/models/restaurant.dart';
 import 'package:restoner_comensales/utils/ui_utils.dart';
@@ -26,7 +27,7 @@ class RestaurantTile extends StatelessWidget {
           height: 90,
           alignment: Alignment.center,
           decoration: BoxDecoration(color: restaurant.opened ? kPrimaryColor : kDarkColor, borderRadius: kRoundedBorder),
-          child: Icon(restaurant.opened ? FontAwesomeIcons.storeAlt : FontAwesomeIcons.storeAltSlash, color: Colors.white),
+          child: FaIcon(restaurant.opened ? FontAwesomeIcons.storeAlt : FontAwesomeIcons.storeAltSlash, color: Colors.white),
         ),
         kSpacerX,
         Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -38,15 +39,15 @@ class RestaurantTile extends StatelessWidget {
             padding: kPadding1,
             decoration: const BoxDecoration(borderRadius: kRoundedBorder, color: kBackgroundColor),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              Icon(FontAwesomeIcons.utensils, color: restaurant.hasLocalAttendance ? kLightColor : kSecondaryColor).box(35, 35),
+              FaIcon(FontAwesomeIcons.utensils, color: restaurant.hasLocalAttendance ? kLightColor : kSecondaryColor).box(35, 35),
               kSpacerX2,
-              Icon(FontAwesomeIcons.bicycle, color: restaurant.hasDelivery ? kLightColor : kSecondaryColor).box(35, 35),
+              FaIcon(FontAwesomeIcons.bicycle, color: restaurant.hasDelivery ? kLightColor : kSecondaryColor).box(35, 35),
               kSpacerX2,
-              Icon(FontAwesomeIcons.shoppingBag, color: restaurant.hasTakeout ? kLightColor : kSecondaryColor).box(35, 35),
+              FaIcon(FontAwesomeIcons.shoppingBag, color: restaurant.hasTakeout ? kLightColor : kSecondaryColor).box(35, 35),
             ]),
           ).aligned(Alignment.centerRight),
         ]).expanded(),
       ]).height(90),
-    );
+    ).mouse(() => Get.toNamed(Routes.RESTAURANT(restaurant.id.toString())));
   }
 }

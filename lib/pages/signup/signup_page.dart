@@ -14,7 +14,7 @@ class SignUpPage extends GetView<SignUpController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.max, children: [
-        const Icon(
+        const FaIcon(
           FontAwesomeIcons.chevronLeft,
           size: 30,
         ).mouse(() => Get.back()).aligned(Alignment.centerLeft),
@@ -42,7 +42,7 @@ class _FirstStepView extends GetView<SignUpController> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
         TextFormField(
           decoration: const InputDecoration(
-            prefixIcon: Icon(FontAwesomeIcons.phone),
+            prefixIcon: FaIcon(FontAwesomeIcons.phone),
             hintText: 'Número telefónico',
           ),
         ),
@@ -92,14 +92,14 @@ class _ThirdStepView extends GetView<SignUpController> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
           TextFormField(
             decoration: const InputDecoration(
-              prefixIcon: Icon(FontAwesomeIcons.user),
+              prefixIcon: FaIcon(FontAwesomeIcons.user),
               hintText: 'Nombre(s)',
             ),
           ),
           kSpacerY,
           TextFormField(
             decoration: const InputDecoration(
-              prefixIcon: Icon(FontAwesomeIcons.userTag),
+              prefixIcon: FaIcon(FontAwesomeIcons.userTag),
               hintText: 'Apellido(s)',
             ),
           ),
@@ -114,9 +114,9 @@ class _ThirdStepView extends GetView<SignUpController> {
               obscureText: value!,
               decoration: InputDecoration(
                 hintText: 'Contraseña',
-                prefixIcon: const Icon(FontAwesomeIcons.lock),
+                prefixIcon: const FaIcon(FontAwesomeIcons.lock),
                 suffixIcon: IconButton(
-                  icon: Icon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
+                  icon: FaIcon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
                   onPressed: () => update(!value),
                 ),
               ),
@@ -129,9 +129,9 @@ class _ThirdStepView extends GetView<SignUpController> {
               obscureText: value!,
               decoration: InputDecoration(
                 hintText: 'Confirmar contraseña',
-                prefixIcon: const Icon(FontAwesomeIcons.lock),
+                prefixIcon: const FaIcon(FontAwesomeIcons.lock),
                 suffixIcon: IconButton(
-                  icon: Icon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
+                  icon: FaIcon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
                   onPressed: () => update(!value),
                 ),
               ),

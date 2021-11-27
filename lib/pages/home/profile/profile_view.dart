@@ -14,7 +14,7 @@ class ProfileView extends GetView<ProfileController> {
       const Text('Profile'),
       kSpacerY,
       IconButton(
-        icon: const Icon(FontAwesomeIcons.signOutAlt),
+        icon: const FaIcon(FontAwesomeIcons.signOutAlt),
         onPressed: () => controller.logOut(),
       )
     ]);

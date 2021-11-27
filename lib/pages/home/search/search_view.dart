@@ -53,9 +53,9 @@ class _SearchListView extends GetView<SearchController> {
         idleText: 'Mostrar mapa',
         releaseText: 'Mostrar mapa',
         completeText: 'Mostrar mapa',
-        idleIcon: const Icon(FontAwesomeIcons.mapMarkedAlt, color: kPrimaryColor),
-        releaseIcon: const Icon(FontAwesomeIcons.mapMarkedAlt, color: kPrimaryColor),
-        completeIcon: const Icon(FontAwesomeIcons.mapMarkedAlt, color: kPrimaryColor),
+        idleIcon: const FaIcon(FontAwesomeIcons.mapMarkedAlt, color: kPrimaryColor),
+        releaseIcon: const FaIcon(FontAwesomeIcons.mapMarkedAlt, color: kPrimaryColor),
+        completeIcon: const FaIcon(FontAwesomeIcons.mapMarkedAlt, color: kPrimaryColor),
         textStyle: Get.textTheme.button!.copyWith(color: kPrimaryColor),
       ),
       child: LiveList(

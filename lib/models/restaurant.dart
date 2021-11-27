@@ -4,6 +4,7 @@ import 'package:restoner_comensales/models/foodtype.dart';
 
 final _names = [
   'La pizza de Don Cangrejo',
+  'Nombre innecesariamente largo para pruebas',
   'McDonald\'s',
   'El kentoki',
 ];

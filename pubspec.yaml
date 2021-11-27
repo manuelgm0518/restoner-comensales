@@ -39,6 +39,8 @@ dependencies:
   avoid_keyboard: ^0.3.0
   easy_mask: ^2.0.1
   scroll_snap_list: ^0.8.4
+  sliver_header_delegate: ^0.0.5
+  faker: ^2.0.0
 
   font_awesome_flutter: ^9.2.0
   derived_colors: ^0.3.0
@@ -49,6 +51,10 @@ dependencies:
   collapsible: ^1.0.0
   animated_clipper: ^0.2.0+2
   pull_to_refresh: ^2.0.0
+  flutter_staggered_grid_view: ^0.4.1
+  flutter_sticky_header: ^0.6.0
+  direct_select_flutter: ^1.1.1
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -92,6 +98,7 @@ flutter:
   assets:
     - assets/app/
     - assets/restoner/
+    - assets/pictures/
 
   fonts:
     - family: Poppins

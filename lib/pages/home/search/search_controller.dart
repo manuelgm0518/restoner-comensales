@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:restoner_comensales/pages/home/home_controller.dart';
-import 'package:restoner_comensales/utils/printer.dart';
 
 class SearchController extends GetxController {
   final pageController = PageController(initialPage: 1);
@@ -19,7 +18,7 @@ class SearchController extends GetxController {
   }
 
   void onRefresh() async {
-    pageController.previousPage(duration: const Duration(seconds: 2), curve: ElasticOutCurve());
+    pageController.previousPage(duration: const Duration(seconds: 2), curve: const ElasticOutCurve());
     refreshController.refreshCompleted();
   }
 
