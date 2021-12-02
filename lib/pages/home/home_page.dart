@@ -22,6 +22,7 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kSurfaceColor,
         title: const Text('Restoner', style: TextStyle(fontSize: 35)),
         actions: [
           IconButton(
@@ -37,6 +38,7 @@ class HomePage extends GetView<HomeController> {
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Container(
             height: kToolbarHeight,
+            color: kSurfaceColor,
             alignment: Alignment.center,
             child: Row(children: [
               ListView.builder(

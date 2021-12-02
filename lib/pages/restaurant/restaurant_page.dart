@@ -1,4 +1,5 @@
 import 'package:animated_size_and_fade/animated_size_and_fade.dart';
+import 'package:auto_animated/auto_animated.dart';
 import 'package:direct_select_flutter/direct_select_container.dart';
 import 'package:direct_select_flutter/direct_select_item.dart';
 import 'package:direct_select_flutter/direct_select_list.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:restoner_comensales/components/category_card.dart';
 import 'package:restoner_comensales/components/food_card.dart';
 import 'package:restoner_comensales/config/app_themes.dart';
 import 'package:restoner_comensales/models/food.dart';
@@ -15,7 +17,7 @@ import 'package:sliver_header_delegate/sliver_header_delegate.dart';
 import 'restaurant_controller.dart';
 export 'restaurant_controller.dart';
 
-const _kExpandedHeaderHeight = 180.0;
+const _kExpandedHeaderHeight = 190.0;
 const _kWeekdays = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 
 class RestaurantPage extends GetView<RestaurantController> {
@@ -45,6 +47,7 @@ class RestaurantPage extends GetView<RestaurantController> {
             widget: (state) {
               return CustomScrollView(
                 physics: kBouncyScroll,
+                controller: controller.scrollController,
                 slivers: <Widget>[
                   SliverPersistentHeader(
                     pinned: true,
@@ -63,7 +66,7 @@ class RestaurantPage extends GetView<RestaurantController> {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.77), BlendMode.dstATop),
-                                  image: AssetImage('assets/pictures/restaurant.jpg'),
+                                  image: const AssetImage('assets/pictures/restaurant.jpg'),
                                 ),
                               ),
                             ),
@@ -76,7 +79,7 @@ class RestaurantPage extends GetView<RestaurantController> {
                               state.opened ? 'ABIERTO' : 'CERRADO',
                               style: Get.textTheme.semibold.copyWith(color: Colors.white),
                             ),
-                          ).aligned(Alignment.bottomRight),
+                          ).aligned(Alignment.bottomCenter),
                         ]),
                       ),
                       leading: _iconButton(
@@ -94,14 +97,30 @@ class RestaurantPage extends GetView<RestaurantController> {
                         ).pr
                       ],
                       children: [
+                        // FlexibleHeaderItem(
+                        //     options: [HeaderItemOptions.hide],
+                        //     expandedAlignment: Alignment.topRight,
+                        //     expandedMargin: kPaddingX5,
+                        //     child: Container(
+                        //       decoration: BoxDecoration(color: state!.opened ? kSuccessColor : kErrorColor, borderRadius: kRoundedBorder / 2),
+                        //       padding: kPadding2,
+                        //       margin: kPadding,
+                        //       child: Text(
+                        //         state.opened ? 'ABIERTO' : 'CERRADO',
+                        //         style: Get.textTheme.semibold.copyWith(color: Colors.white),
+                        //       ),
+                        //     )),
                         FlexibleTextItem(
                           text: state.name,
+                          textAlign: TextAlign.center,
                           collapsedStyle: Get.textTheme.sub2.copyWith(color: kSecondaryColor),
                           expandedStyle: Get.textTheme.title.copyWith(color: kSurfaceColor),
-                          expandedAlignment: Alignment.bottomLeft,
+                          expandedAlignment: Alignment.bottomCenter,
                           collapsedAlignment: Alignment.center,
                           expandedPadding: kPadding,
+                          expandedMargin: kPaddingB5,
                           overflow: TextOverflow.ellipsis,
+                          softWrap: true,
                           maxLines: 2,
                           collapsedMargin: kPaddingX5,
                           collapsedPadding: kPaddingX5,
@@ -186,86 +205,72 @@ class RestaurantPage extends GetView<RestaurantController> {
                   // ),
 
                   SliverStickyHeader(
-                    header: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                      Container(
-                        //height: 45,
-                        margin: kPadding,
-                        padding: kPaddingX,
-                        //padding: kPadding2,
-                        // margin: const EdgeInsets.symmetric(horizontal: kSpacing, vertical: kSpacing2),
-                        decoration: const BoxDecoration(
-                          color: kLightColor,
-                          borderRadius: kRoundedBorder,
-                        ),
-                        child: Row(children: [
-                          FaIcon(FontAwesomeIcons.calendar, size: 20).pr,
-                          DirectSelectList<String>(
-                            values: const [
-                              'Lunes - 29/11',
-                              'Martes - 30/11',
-                              'Miércoles - 1/12',
-                              'Jueves - 2/12',
-                              'Viernes - 3/12',
-                              'Sábado - 27/11',
-                              'Domingo - 28/11',
-                            ],
-                            defaultItemIndex: 5,
-                            itemBuilder: (String value) => DirectSelectItem(
-                              value: value,
-                              itemBuilder: (context, value) => Text(value, style: Get.textTheme.sub1),
-                            ),
-                            //focusedItemDecoration: _getDslDecoration(),
-                            onItemSelectedListener: (item, index, context) {
-                              controller.selectedDay(item);
-                              //Scaffold.of(context).showSnackBar(SnackBar(content: Text(item)));
-                            },
-                          ).expanded(),
-                          FaIcon(FontAwesomeIcons.sort, size: 20),
-                        ]),
-                        // child: Row(children: [
-                        //   for (int i = 0; i < 7; i++)
-                        //     Text(
-                        //       _kWeekdays[i],
-                        //       textAlign: TextAlign.center,
-                        //       style: Get.textTheme.buttons.copyWith(color: kSurfaceColor),
-                        //     ).bottom([
-                        //       Text(
-                        //         (i + 10).toString(),
-                        //         textAlign: TextAlign.center,
-                        //         style: Get.textTheme.info.copyWith(color: kSurfaceColor),
-                        //       ),
-                        //     ], crossAxisAlignment: CrossAxisAlignment.center).expanded(),
-                        // ]),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(color: kSurfaceColor, border: Border.symmetric(horizontal: BorderSide(color: kLightColor, width: 1))),
-                        child: Row(children: [
-                          for (int i = 0; i < 5; i++)
-                            Obx(() {
-                              final selected = controller.selectedCategory.value == i;
-                              return Text(
-                                'Desayuno #$i',
-                                style: Get.textTheme.sub2.copyWith(
-                                  color: selected ? kPrimaryColor : kDarkColor,
-                                  //fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+                    header: Container(
+                      padding: kPadding,
+                      decoration: const BoxDecoration(color: kSurfaceColor, border: Border(bottom: BorderSide(color: kLightColor, width: 1))),
+                      child: Row(children: [
+                        Container(
+                          padding: kPaddingX,
+                          decoration: const BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: kRoundedBorder,
+                          ),
+                          child: DefaultTextStyle(
+                            style: Get.textTheme.semibold.copyWith(color: Colors.white),
+                            child: Row(children: [
+                              const FaIcon(FontAwesomeIcons.calendar, size: 20, color: kSurfaceColor).pr,
+                              DirectSelectList<String>(
+                                values: const [
+                                  'Lunes - 29/11',
+                                  'Martes - 30/11',
+                                  'Miércoles - 01/12',
+                                  'Jueves - 02/12',
+                                  'Viernes - 03/12',
+                                  'Sábado - 04/11',
+                                  'Domingo - 05/11',
+                                ],
+                                defaultItemIndex: 2,
+                                itemBuilder: (String value) => DirectSelectItem(
+                                  value: value,
+                                  itemBuilder: (context, value) => Text(value, style: Get.textTheme.sub1),
                                 ),
-                              );
-                            }).mouse(() => controller.selectedCategory(i)).px,
-                        ]).scrollable(direction: Axis.horizontal, padding: kPadding),
-                      ),
-                    ]).backgroundColor(kSurfaceColor),
+                                focusedItemDecoration: const BoxDecoration(
+                                  border: Border.symmetric(horizontal: BorderSide(width: 1, color: Colors.black12)),
+                                ),
+                                onItemSelectedListener: (item, index, context) {
+                                  controller.selectedDay(item);
+                                  //Scaffold.of(context).showSnackBar(SnackBar(content: Text(item)));
+                                },
+                              ).expanded(),
+                              const FaIcon(FontAwesomeIcons.sort, size: 20, color: Colors.white),
+                            ]),
+                          ),
+                        ).pr2.expanded(),
+                        Obx(() => IconButton(
+                              icon: Icon(FontAwesomeIcons.thLarge, color: controller.showCategories.value ? kPrimaryColor : kDarkColor),
+                              onPressed: () => controller.showCategories.toggle(),
+                            )),
+                      ]),
+                    ),
                     sliver: SliverPadding(
                       padding: kPadding,
-                      sliver: SliverStaggeredGrid.countBuilder(
-                        crossAxisCount: 2,
-                        staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
-                        mainAxisSpacing: kSpacing,
-                        crossAxisSpacing: kSpacing,
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          final food = Food.random();
-                          return FoodCard(food);
-                        },
+                      sliver: Obx(
+                        () => controller.showCategories.value
+                            ? _categories()
+                            : SliverStaggeredGrid.countBuilder(
+                                crossAxisCount: 2,
+                                staggeredTileBuilder: (index) => StaggeredTile.fit(index == 0 ? 2 : 1),
+                                mainAxisSpacing: kSpacing,
+                                crossAxisSpacing: kSpacing,
+                                itemCount: 11,
+                                itemBuilder: (context, index) {
+                                  if (index == 0) {
+                                    return Text(controller.currentCategory.name, style: Get.textTheme.title.copyWith(color: kSecondaryColor));
+                                  }
+                                  final food = Food.random();
+                                  return FoodCard(food);
+                                },
+                              ),
                       ),
                     ),
                   ),
@@ -279,4 +284,34 @@ class RestaurantPage extends GetView<RestaurantController> {
       ),
     ).overlayStyle(navigationBar: kBackgroundColor);
   }
+}
+
+Widget _categories() {
+  final controller = Get.find<RestaurantController>();
+  return LiveSliverGrid(
+    itemCount: controller.categories.length,
+    controller: controller.scrollController,
+    showItemDuration: 150.milliseconds,
+    showItemInterval: 50.milliseconds,
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      mainAxisSpacing: kSpacing,
+      crossAxisSpacing: kSpacing,
+    ),
+    itemBuilder: (context, index, animation) {
+      return FadeTransition(
+        opacity: Tween<double>(begin: 0, end: 1).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, -0.1),
+            end: Offset.zero,
+          ).animate(animation),
+          child: CategoryCard(controller.categories[index]).mouse(() {
+            controller.selectedCategory(index);
+            controller.showCategories(false);
+          }),
+        ),
+      );
+    },
+  );
 }

@@ -26,7 +26,7 @@ class LogInPage extends GetView<LogInController> {
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                   hintText: 'Número telefónico',
-                  prefixIcon: FaIcon(FontAwesomeIcons.globe),
+                  prefixIcon: Icon(FontAwesomeIcons.globe),
                 ),
               ),
               kSpacerY,
@@ -37,9 +37,9 @@ class LogInPage extends GetView<LogInController> {
                   obscureText: value!,
                   decoration: InputDecoration(
                     hintText: 'Contraseña',
-                    prefixIcon: const FaIcon(FontAwesomeIcons.lock),
+                    prefixIcon: const Icon(FontAwesomeIcons.lock),
                     suffixIcon: IconButton(
-                      icon: FaIcon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
+                      icon: Icon(value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash),
                       onPressed: () => update(!value),
                     ),
                   ),
